@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">RxJava</string>
+    <string name="email">Email:</string>
+    <string name="password">Password</string>
+    <string name="number">Number</string>
+    <string name="info">Enter your information:</string>
+    <string name="submit">Submit</string>
+    <string name="invalidemail">Invalid Email</string>
+    <string name="invalidpassword">Invalid Password</string>
+    <string name="invalid_phone_number">Invalid Phone Number</string>
 </resources>
