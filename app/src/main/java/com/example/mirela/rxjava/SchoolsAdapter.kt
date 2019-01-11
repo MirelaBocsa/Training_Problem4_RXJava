@@ -2,6 +2,7 @@ package com.example.mirela.rxjava
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +10,19 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mirela.rxjava.databinding.SchoolItemBinding
+import java.io.Console
+
 interface Myadapter{
     fun setItems(list : List<SchoolViewModel>?)
 }
 
-class SchoolsAdapter(private val context: Context) : RecyclerView.Adapter<ViewHolder>(), Myadapter {
+class SchoolsAdapter(private val fragment:Fragment) : RecyclerView.Adapter<ViewHolder>(), Myadapter {
 
-    private val schoolsViewModel: SchoolsViewModel by lazy { SchoolsViewModel() }
+    private val schoolsViewModel: SchoolsViewModel by lazy {  ViewModelProviders.of(fragment).get(SchoolsViewModel::class.java) }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
@@ -35,7 +40,9 @@ class SchoolsAdapter(private val context: Context) : RecyclerView.Adapter<ViewHo
     }
 
     override fun setItems(list:List<SchoolViewModel>?) {
-        schoolsViewModel.items.postValue(list)
+        Log.e("set items ",schoolsViewModel.items.value?.size.toString())
+        schoolsViewModel.items.value=list
+        notifyDataSetChanged()
     }
 
 }

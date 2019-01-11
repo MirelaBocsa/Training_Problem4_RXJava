@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mirela.rxjava.databinding.ActivityMainBinding
 import com.example.mirela.rxjava.databinding.SchoolsFragmentBinding
 
 class SchoolsFragment : Fragment() {
-    private val schoolsAdapter: SchoolsAdapter by lazy { SchoolsAdapter(this.context!!) }
+    private val schoolsAdapter: SchoolsAdapter by lazy { SchoolsAdapter(this) }
 
-    private val viewModel: SchoolsViewModel by lazy { SchoolsViewModel() }
+    private val viewModel: SchoolsViewModel by lazy { ViewModelProviders.of(this).get(SchoolsViewModel::class.java) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.e("on create view ","called meth")

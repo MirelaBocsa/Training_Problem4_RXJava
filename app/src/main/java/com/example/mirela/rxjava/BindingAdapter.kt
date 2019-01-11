@@ -1,6 +1,7 @@
 package com.example.mirela.rxjava
 
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,8 +21,10 @@ object BindingAdapter {
         if (adapter == null || items == null) {
             return
         }
-        if (adapter is Myadapter)
+        if (adapter is Myadapter) {
             adapter.setItems(items.value)
+            Log.e("set items adapter ", items.value?.size.toString())
+        }
     }
 
     @JvmStatic
@@ -31,6 +34,7 @@ object BindingAdapter {
             textView.text = textView.resources.getString(text)
         }
     }
+
     @JvmStatic
     @BindingAdapter(value = ["android:url", "android:placeHolder", "android:errorPlaceHolder"], requireAll = false)
     fun setImageUrl(view: ImageView, url: String?, placeHolder: Int?, errorPlaceHolder: Int?) {

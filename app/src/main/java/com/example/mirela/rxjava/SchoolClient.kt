@@ -9,7 +9,5 @@ interface SchoolClient{
     @GET("schools.json")
     fun getSchools(): Single<Map<String, School>>
 
-//    @GET("schools.json")
-//    fun getSchools(): Call<MutableMap<String, School>>
 
 }

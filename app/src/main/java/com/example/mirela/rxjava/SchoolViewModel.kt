@@ -24,9 +24,6 @@ class SchoolViewModel(private var school: School, val itemClick: (item: School) 
     val state: String?
         get() = school.state
 
-    val stateVisible: Boolean
-        get() = !school.state.isNullOrBlank()
-
     val district: String
         get() = school.district
 

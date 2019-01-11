@@ -1,12 +1,15 @@
 package com.example.mirela.rxjava
 
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class SchoolRepository {
     val apiService = NetworkModule.getRetrofitInstance().create(SchoolClient::class.java)
 
+
     val schools: Single<List<School>>
-        get() = apiService.getSchools().map { data ->
+        get() = apiService.getSchools().subscribeOn(Schedulers.newThread()).map { data ->
             val schools = data.values.sortedBy { it.district }.toMutableList()
             val demoSchool = schools.first { it.settingsCode == "demo" }
             schools.removeAll { it.settingsCode == "demo" || !it.enable }

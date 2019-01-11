@@ -35,7 +35,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:background="@null"
-                            android:hint="Search"
+                            android:hint="Search for the school district                                 "
                             android:lines="1"
                             android:maxLines="1"
                             android:paddingStart="16dp"
