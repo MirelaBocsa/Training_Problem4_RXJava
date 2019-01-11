@@ -17,7 +17,7 @@ import com.example.mirela.rxjava.databinding.SchoolItemBinding
 import java.io.Console
 
 interface Myadapter{
-    fun setItems(list : List<SchoolViewModel>?)
+    fun notifChanges(list : List<SchoolViewModel>?)
 }
 
 class SchoolsAdapter(private val fragment:Fragment) : RecyclerView.Adapter<ViewHolder>(), Myadapter {
@@ -27,6 +27,7 @@ class SchoolsAdapter(private val fragment:Fragment) : RecyclerView.Adapter<ViewH
     override fun onCreateViewHolder(viewGroup: ViewGroup, p: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
         val binding = SchoolItemBinding.inflate(layoutInflater, viewGroup, false)
+        binding.setLifecycleOwner(fragment)
         return ViewHolder(binding.root)
     }
 
@@ -39,10 +40,8 @@ class SchoolsAdapter(private val fragment:Fragment) : RecyclerView.Adapter<ViewH
 
     }
 
-    override fun setItems(list:List<SchoolViewModel>?) {
-        Log.e("set items ",schoolsViewModel.items.value?.size.toString())
-        schoolsViewModel.items.value=list
-        notifyDataSetChanged()
+    override fun notifChanges(list:List<SchoolViewModel>?) {
+//        notifyDataSetChanged()
     }
 
 }

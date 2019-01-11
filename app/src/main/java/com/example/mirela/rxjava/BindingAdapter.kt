@@ -22,7 +22,7 @@ object BindingAdapter {
             return
         }
         if (adapter is Myadapter) {
-            adapter.setItems(items.value)
+            adapter.notifChanges(items.value)
             Log.e("set items adapter ", items.value?.size.toString())
         }
     }
