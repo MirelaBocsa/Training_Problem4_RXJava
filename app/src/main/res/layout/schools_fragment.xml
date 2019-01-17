@@ -33,7 +33,7 @@
 
                     <EditText
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="52dp"
                             android:background="@null"
                             android:hint="Search for the school district                                 "
                             android:lines="1"

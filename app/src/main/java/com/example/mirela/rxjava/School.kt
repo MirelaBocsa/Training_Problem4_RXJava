@@ -3,7 +3,6 @@ package com.example.mirela.rxjava
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import io.reactivex.internal.operators.flowable.FlowableDistinct
 
 data class School(
     @SerializedName("settings_code") val settingsCode: String,

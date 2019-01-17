@@ -1,5 +1,6 @@
 package com.example.mirela.rxjava
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,8 +21,9 @@ class SchoolsFragment : Fragment() {
     private val viewModel: SchoolsViewModel by lazy { ViewModelProviders.of(this).get(SchoolsViewModel::class.java) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.e("on create view ","called meth")
-        val binding = DataBindingUtil.inflate<SchoolsFragmentBinding>(inflater, R.layout.schools_fragment, container, false)
+        Log.e("on create view ", "called meth")
+        val binding =
+            DataBindingUtil.inflate<SchoolsFragmentBinding>(inflater, R.layout.schools_fragment, container, false)
         binding.setLifecycleOwner(this)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
@@ -29,4 +32,16 @@ class SchoolsFragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.moveNext.observe(this, Observer {
+            val intent = Intent(activity, DisplayDetailsActivity::class.java).apply {
+                putExtra("item",it)
+            }
+            startActivity(intent)
+        })
+    }
+
 }

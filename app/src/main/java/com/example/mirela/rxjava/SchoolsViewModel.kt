@@ -12,14 +12,17 @@ import io.reactivex.rxkotlin.*
 
 class SchoolsViewModel : ViewModel() {
 
-    private val schoolRepository = SchoolRepository()
+    val schoolRepository = SchoolRepository()
 
     val items: MutableLiveData<List<SchoolViewModel>> by lazy { MutableLiveData<List<SchoolViewModel>>() }
 
     val filter: ObservableField<String> by lazy { ObservableField<String>("") }
 
+    val moveNext: MutableLiveData<School> by lazy { MutableLiveData<School>() }
+
     private val itemClick: (School) -> Unit = { school ->
-        Log.e("item clicked ", school.district)
+        schoolRepository.school = school
+        moveNext.postValue(school)
     }
 
 
@@ -55,8 +58,6 @@ fun <T> ObservableField<T>.toFlowable(): Flowable<T> {
     val callback = object : Observable.OnPropertyChangedCallback() {
 
         override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-            Log.d("property change ", "true")
-            Log.d("property change ", "true")
             get()?.let {
                 Log.d("property ", it.toString())
                 subject.onNext(it)

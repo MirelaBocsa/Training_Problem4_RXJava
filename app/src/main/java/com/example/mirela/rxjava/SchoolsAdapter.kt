@@ -1,20 +1,13 @@
 package com.example.mirela.rxjava
 
-import android.app.Activity
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mirela.rxjava.databinding.SchoolItemBinding
-import java.io.Console
 
 interface Myadapter{
     fun notifChanges(list : List<SchoolViewModel>?)
@@ -41,7 +34,7 @@ class SchoolsAdapter(private val fragment:Fragment) : RecyclerView.Adapter<ViewH
     }
 
     override fun notifChanges(list:List<SchoolViewModel>?) {
-//        notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
 }
