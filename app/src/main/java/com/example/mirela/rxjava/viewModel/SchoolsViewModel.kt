@@ -1,18 +1,20 @@
-package com.example.mirela.rxjava
+package com.example.mirela.rxjava.viewModel
 
 import android.util.Log
 import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.mirela.rxjava.School
+import com.example.mirela.rxjava.SchoolRepository
 import io.reactivex.Flowable
 import io.reactivex.processors.BehaviorProcessor
 import io.reactivex.rxkotlin.*
 
 
-class SchoolsViewModel : ViewModel() {
+class SchoolsViewModel(schoolRepository: SchoolRepository) : ViewModel() {
 
-    val schoolRepository = SchoolRepository()
 
     val items: MutableLiveData<List<SchoolViewModel>> by lazy { MutableLiveData<List<SchoolViewModel>>() }
 
@@ -33,7 +35,12 @@ class SchoolsViewModel : ViewModel() {
                 val data = mutableListOf<SchoolViewModel>()
                 if (filter.isEmpty()) {
                     Log.e("filter ", "empty")
-                    data.addAll(schools.asSequence().toMutableList().map { SchoolViewModel(it, itemClick) }.toList())
+                    data.addAll(schools.asSequence().toMutableList().map {
+                        SchoolViewModel(
+                            it,
+                            itemClick
+                        )
+                    }.toList())
                     Log.e("filter ", data.size.toString())
                 } else {
                     val list =
@@ -51,6 +58,18 @@ class SchoolsViewModel : ViewModel() {
     }
 
 
+}
+
+
+class SchoolsViewModelFactory(private val schoolRepository: SchoolRepository) : ViewModelProvider.Factory {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SchoolsViewModel::class.java)) {
+            return SchoolsViewModel(schoolRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }
 
 fun <T> ObservableField<T>.toFlowable(): Flowable<T> {

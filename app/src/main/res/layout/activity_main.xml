@@ -5,7 +5,7 @@
 
         <variable
                 name="viewModel"
-                type="com.example.mirela.rxjava.SchoolsViewModel"/>
+                type="com.example.mirela.rxjava.viewModel.SchoolsViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +16,7 @@
 
         <fragment
                 android:id="@+id/fragmentSchool"
-                android:name="com.example.mirela.rxjava.SchoolsFragment"
+                android:name="com.example.mirela.rxjava.ui.SchoolsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
         </fragment>

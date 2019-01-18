@@ -1,5 +1,6 @@
-package com.example.mirela.rxjava
+package com.example.mirela.rxjava.viewModel
 import androidx.lifecycle.ViewModel
+import com.example.mirela.rxjava.School
 
 class SchoolViewModel(private var school: School, private val itemClick: (item: School) -> Unit) : ViewModel() {
 

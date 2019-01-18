@@ -1,9 +1,8 @@
-package com.example.mirela.rxjava
+package com.example.mirela.rxjava.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-
-
+import com.example.mirela.rxjava.R
 
 
 class MainActivity : AppCompatActivity() {

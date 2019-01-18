@@ -1,4 +1,4 @@
-package com.example.mirela.rxjava
+package com.example.mirela.rxjava.adapters
 
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -12,6 +12,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.mirela.rxjava.Myadapter
+import com.example.mirela.rxjava.viewModel.SchoolViewModel
 
 object BindingAdapter {
     @JvmStatic
@@ -38,7 +40,9 @@ object BindingAdapter {
     @JvmStatic
     @BindingAdapter(value = ["android:url", "android:placeHolder", "android:errorPlaceHolder"], requireAll = false)
     fun setImageUrl(view: ImageView, url: String?, placeHolder: Int?, errorPlaceHolder: Int?) {
-        setImageUrl(view, url, placeHolder?.run { ContextCompat.getDrawable(view.context, placeHolder) },
+        setImageUrl(view,
+            url,
+            placeHolder?.run { ContextCompat.getDrawable(view.context, placeHolder) },
             errorPlaceHolder?.run { ContextCompat.getDrawable(view.context, errorPlaceHolder) })
     }
 

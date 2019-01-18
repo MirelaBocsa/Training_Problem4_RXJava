@@ -1,12 +1,12 @@
 package com.example.mirela.rxjava
 
-import com.google.gson.Gson
+import com.example.mirela.rxjava.networking.RetrofitFactory
+import com.example.mirela.rxjava.networking.SchoolClient
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class SchoolRepository {
-    val apiService = NetworkModule.getRetrofitInstance().create(SchoolClient::class.java)
+    val apiService = RetrofitFactory.getRetrofitInstance().create(SchoolClient::class.java)
 
     var school: School? = null
 

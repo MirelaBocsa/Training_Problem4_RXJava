@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mirela.rxjava.databinding.SchoolItemBinding
+import com.example.mirela.rxjava.viewModel.SchoolViewModel
+import com.example.mirela.rxjava.viewModel.SchoolsViewModel
 
 interface Myadapter{
     fun notifChanges(list : List<SchoolViewModel>?)
@@ -15,7 +17,8 @@ interface Myadapter{
 
 class SchoolsAdapter(private val fragment:Fragment) : RecyclerView.Adapter<ViewHolder>(), Myadapter {
 
-    private val schoolsViewModel: SchoolsViewModel by lazy {  ViewModelProviders.of(fragment).get(SchoolsViewModel::class.java) }
+    private val schoolsViewModel: SchoolsViewModel by lazy {  ViewModelProviders.of(fragment).get(
+        SchoolsViewModel::class.java) }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
